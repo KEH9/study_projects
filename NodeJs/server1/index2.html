@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body{
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<ul id="result"></ul>
+
+
+
+<script>
+
+loadPhones();
+
+    function loadPhones() {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'phones.json', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState != 4) return;
+
+            if (xhr.status != 200) {
+                // обработать ошибку
+                alert(xhr.status + ': ' + xhr.statusText);
+            } else {
+                // вывести результат
+
+                var allData = JSON.parse(xhr.responseText);
+
+                for (var i = 0; i < allData.length; i++) {
+
+                    var ul = document.getElementById('result');
+                    var li = document.createElement('li');
+                    li.innerHTML = allData[i].name;
+                    ul.appendChild(li);
+
+                }
+
+            }
+
+        };
+
+        xhr.send();
+    }
+</script>
+
+</body>
+
+</html>
