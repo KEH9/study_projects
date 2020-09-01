@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/.eslintrc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/index.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/actions/PageActions.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/actions/UserActions.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/Page.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/User.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/constants/Page.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/constants/User.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/containers/App.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/reducers/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/reducers/page.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/reducers/user.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/stores/configureStore.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/styles/app.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webpack.config.js" charset="UTF-8" />
+  </component>
+</project>
