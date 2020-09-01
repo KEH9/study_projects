@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Распределенный поток</title>
+
+    <style>
+        #primeContainer {
+            border: solid 1px black;
+            padding: 3px;
+            height: 300px;
+            max-width: 500px;
+            overflow: scroll;
+            overflow-x: hidden;
+            font-size: x-small;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+
+        #status {
+            background-color: #00cc33;
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+
+
+
+
+</head>
+
+
+<body>
+<p>Задайте диапазон чисел от <input id="from" value="1"> до <input id="to" value="200000">.</p>
+<button id="searchButton" onclick="doSearch()">Запустить поиск</button>
+
+<div id="primeContainer">
+</div>
+
+<div id="status"></div>
+
+<script>
+
+        function doSearch() {
+            // Отключаем кнопку запуска вычислений, чтобы пользователь не мог
+            // запускать несколько процессов поиска одновременно
+            searchButton.disabled = true;
+
+            // Получаем начальное и конечное число диапазона поиска
+            var fromNumber = document.getElementById("from").value;
+            var toNumber = document.getElementById("to").value;
+
+            // Создаем поток
+            worker = new Worker("PrimeWorker.js");
+
+            // Подключаем функцию к событию onMessage, чтобы получать
+            // сообщения от потока
+            worker.onmessage = receivedWorkerMessage;
+            worker.onerror = workerError;
+
+            worker.postMessage(
+                    {
+                        from: fromNumber,
+                        to: toNumber
+                    }
+            );
+
+            // Информируем пользователя, что вычисления выполняются
+            document.getElementById('status').innerHTML = "Фоновый поток ищет простые числа (от " +
+                    fromNumber + " до " + toNumber + ") ...";
+        }
+
+
+        function receivedWorkerMessage(event) {
+            // Получаем список простых чисел
+            var message = event.data;
+
+            if (message.messageType == "PrimeList") {
+                // Отображаем список в соответствующей области страницы
+                var primes = message.data;
+
+                var primeList = "";
+                for (var i=0; i<primes.length; i++) {
+                    primeList += primes[i];
+                    if (i != primes.length-1) primeList += ", ";
+                }
+
+                var primeContainer = document.getElementById("primeContainer");
+                primeContainer.innerHTML = primeList;
+
+                if (primeList.length == 0) {
+                    document.getElementById('status').innerHTML = "Ошибка поиска.";
+                }
+                else {
+                    document.getElementById('status').innerHTML = "Простые числа найдены!";
+                }
+                searchButton.disabled = false;
+            }
+            else if (message.messageType == "Progress") {
+                document.getElementById('status').innerHTML = message.data + "% выполнено ...";
+            }
+        }
+
+        function workerError(error) {
+            document.getElementById('status').innerHTML = error.message;
+        }
+
+</script>
+
+</body>
+
+</html>

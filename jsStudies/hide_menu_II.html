@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .tree li {
+            cursor: pointer;
+            background-color: lightgreen;
+            width: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+
+<ul class="tree" id="tree">
+    <li>Животные
+        <ul>
+            <li>Млекопитающие
+                <ul>
+                    <li>Коровы</li>
+                    <li>Ослы</li>
+                    <li>Собаки</li>
+                    <li>Тигры</li>
+                </ul>
+            </li>
+            <li>Другие
+                <ul>
+                    <li>Змеи</li>
+                    <li>Птицы</li>
+                    <li>Ящерицы</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>Рыбы
+        <ul>
+            <li>Аквариумные
+                <ul>
+                    <li>Гуппи</li>
+                    <li>Скалярии</li>
+                </ul>
+
+            </li>
+            <li>Морские
+                <ul>
+                    <li>Морская форель</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    var tree = document.getElementById('tree');
+
+    tree.onclick = function(evt) {
+        var evt = evt || event;
+        var target = evt.target || evt.srcElement;
+
+        /* раскрыть-закрыть детей */
+        var node = target.getElementsByTagName('ul')[0];
+        if (!node) return; // нет детей
+
+        var wrapper = document.createElement('span');
+        var textNode = target.firstChild;
+        target.insertBefore(wrapper, textNode);
+        wrapper.appendChild(textNode);
+
+        var isClickAtSpan = (document.elementFromPoint(evt.clientX, evt.clientY) == wrapper);
+
+        wrapper.removeChild(wrapper.firstChild);
+        target.replaceChild(textNode, wrapper);
+
+        if (isClickAtSpan) {
+            node.style.display = node.style.display ? '' : 'none';
+
+        }
+
+
+    }
+</script>
+
+</body>
+
+</html>

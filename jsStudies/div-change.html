@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        #moving-div {
+            border: 5px groove green;
+            background-color: yellow;
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+Before Before Before
+
+<div id="moving-div">
+    Text Text Text
+    <br> Text Text Text
+    <br>
+</div>
+
+After After After
+
+<script>
+
+    let div = document.getElementById('moving-div');
+    div.style.position = 'absolute';
+    div.style.right = div.style.top = 0;
+    //
+    // let newDivWidth = div.offsetWidth;
+    // let newDivHeight = div.offsetHeight;
+    //
+    // let newDiv = document.createElement('div');
+    // newDiv.style.height = newDivHeight + 'px';
+    // newDiv.style.width = newDivWidth + 'px';
+
+
+    let newDiv = div.cloneNode(false);
+    newDiv.style.position = 'relative';
+    newDiv.style.opacity = 0;
+
+    div.insertAdjacentElement('beforeBegin', newDiv);
+
+
+</script>
+
+</body>
+
+</html>

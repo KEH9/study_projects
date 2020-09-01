@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #field {
+            background: url(https://js.cx/drag-heroes/field.png);
+            width: 800px;
+            height: 600px;
+            float: left;
+        }
+        /* герои и мяч (переносимые элементы) */
+
+        .hero {
+            background: url(https://js.cx/drag-heroes/heroes.png);
+            width: 130px;
+            height: 128px;
+            float: left;
+        }
+
+        #hero1 {
+            background-position: 0 0;
+        }
+
+        #hero2 {
+            background-position: 0 -128px;
+        }
+
+        #hero3 {
+            background-position: -120px 0;
+        }
+
+        #hero4 {
+            background-position: -125px -128px;
+        }
+
+        #hero5 {
+            background-position: -248px -128px;
+        }
+
+        #hero6 {
+            background-position: -244px 0;
+        }
+
+        .draggable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Расставьте супергероев по полю.</h2>
+
+<p>Супергерои и мяч -- это элементы с классом "draggable". Сделайте так, чтобы их можно было переносить.</p>
+
+<p>Важно: если супергероя подносят к низу или верху страницы, она должна автоматически прокручиваться. Если страница помещается на вашем экране целиком и не имеет вертикальной прокрутки -- сделайте окно браузера меньше, чтобы протестировать эту возможность.</p>
+
+<p>Да, и ещё: супергерои ни при каких условиях не должны попасть за край экрана.</p>
+
+<div id="field">
+
+</div>
+
+<div class="hero draggable" id="hero1"></div>
+<div class="hero draggable" id="hero2"></div>
+<div class="hero draggable" id="hero3"></div>
+<div class="hero draggable" id="hero4"></div>
+<div class="hero draggable" id="hero5"></div>
+<div class="hero draggable" id="hero6"></div>
+
+<img src="https://js.cx/drag-heroes/ball.png" class="draggable">
+
+<div style="clear:both"></div>
+
+<script>
+    document.body.onmousedown = onMouseDownF;
+
+    let movingElem;
+
+
+    function onMouseDownF (e) {
+
+        let elem = e.target;
+        movingElem = elem;
+        if (!elem.classList.contains('draggable')) return;
+
+        let coords = getCoords(elem);
+        let shiftX = e.pageX - coords.left;
+        let shiftY = e.pageY - coords.top;
+
+        elem.style.position = 'absolute';
+        document.body.appendChild(elem);
+        moveAt(e, elem);
+
+        elem.style.zIndex = 1000; // над другими элементами
+
+        document.onmousemove = function(e) {
+            moveAt(e, movingElem);
+        };
+
+        elem.onmouseup = function() {
+            document.onmousemove = null;
+            elem.onmouseup = null;
+        };
+
+
+        function moveAt(e, elem) {
+            elem.style.left = e.pageX - shiftX + 'px';
+            elem.style.top = e.pageY - shiftY + 'px';
+        }
+        movingElem.ondragstart = function() {
+            return false;
+        };
+
+    }
+
+
+
+
+
+
+    function getCoords(elem) {
+        let box = elem.getBoundingClientRect();
+        return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+        };
+    }
+    
+    
+
+
+
+
+</script>
+</body>
+
+</html>

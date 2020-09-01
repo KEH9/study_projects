@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            height: 2000px;
+            /* подсказка должна работать независимо от прокрутки */
+        }
+
+        #tip {
+            border: solid 1px lightgray;
+            border-radius: 4px;
+            box-shadow: 2px 2px 2px lightgray;
+            display: inline-block;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            background: #FFF;
+
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+<button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+<button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+<p>Прокрутите страницу, чтобы ссылки были вверху и проверьте, правильно ли показываются подсказки.</p>
+
+
+<script>
+
+    function showTipsMouseover (event) {
+
+        var target = event.target;
+        var tip = target.getAttribute('data-tooltip');
+        if (!tip) {return}
+
+        var container = document.createElement('span');
+        container.innerHTML = tip;
+        container.id = 'tip';
+
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
+
+        document.body.appendChild(container);
+        var targetTop = target.offsetTop - scrollTop;
+        var tipHeight = container.offsetHeight;
+        document.body.removeChild(container);
+
+        var coord = target.getBoundingClientRect();
+
+        if ( tipHeight < (targetTop - 10) ) {
+            //Tip above container
+            container.style.top = coord.top  - tipHeight - 10 + scrollTop + 'px';
+            container.style.left = coord.left - 5 + scrollLeft + 'px';
+
+        } else {
+            //Tip below container
+//            alert('zz');
+            container.style.top = coord.bottom  + 10 + scrollTop + 'px';
+            container.style.left = coord.left - 5 + scrollLeft + 'px';
+
+        }
+
+
+        document.body.appendChild(container);
+
+
+    }
+
+    function showTipsMouseout (event) {
+        var tip = document.getElementById('tip');
+        if (!tip) {return}
+        document.body.removeChild(tip);
+    }
+
+
+    document.addEventListener('mouseover', showTipsMouseover);
+    document.addEventListener('mouseout', showTipsMouseout);
+
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #prompt-form {
+            display: inline-block;
+            padding: 5px 5px 5px 70px;
+            width: 200px;
+            border: 1px solid black;
+            background: white url(https://js.cx/clipart/prompt.png) no-repeat left 5px;
+            vertical-align: middle;
+            z-index: 9999;
+            opacity: 1;
+        }
+
+        #prompt-form-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        #prompt-form-container:before {
+            display: inline-block;
+            height: 100%;
+            content: '';
+            vertical-align: middle;
+        }
+
+        #prompt-form input[name="text"] {
+            display: block;
+            margin: 5px;
+            width: 180px;
+        }
+        #cover-div {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9000;
+            width: 100%;
+            height: 100%;
+            background-color: gray;
+            opacity: 0.3;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+
+<h1>Нажмите на кнопку ниже</h1>
+<input value="Нажмите для показа формы ввода" id="show-button" type="button">
+
+
+<div id="prompt-form-container">
+    <form id="prompt-form">
+        <div id="prompt-message"></div>
+        <input name="text" type="text">
+        <input type="submit" value="Ок">
+        <input type="button" name="cancel" value="Отмена">
+    </form>
+</div>
+
+<script>
+
+    function showPrompt (text, callback) {
+
+        function showCover() {
+            var coverDiv = document.createElement('div');
+            coverDiv.id = 'cover-div';
+            document.body.appendChild(coverDiv);
+        }
+
+        function hideCover() {
+            document.body.removeChild(document.getElementById('cover-div'));
+        }
+
+
+        promptFormContainer.style.display = '';
+        form.style.display = '';
+
+        divMess.innerHTML = text;
+        form.text.focus();
+        showCover();
+
+        // -------- cancel or esc ---------------
+        form.cancel.onclick = function () {
+            callback(null);
+            form.submit();
+            hideCover();
+        };
+        document.body.onkeydown = function (e) {
+            e = e || event;
+            if (e.keyCode == 27) {
+                callback(null);
+                form.submit();
+                hideCover();
+            }
+        };
+        // -------- cancel or esc ---------------
+
+        form.onsubmit = function () {
+
+            callback(form.text.value);
+            hideCover();
+
+        };
+
+        var lastElem = form.elements[form.elements.length - 1];
+        var firstElem = form.elements[0];
+
+        lastElem.onkeydown = function(e) {
+            if (e.keyCode == 9 && !e.shiftKey) {
+                firstElem.focus();
+                return false;
+            }
+        };
+
+        firstElem.onkeydown = function(e) {
+            if (e.keyCode == 9 && e.shiftKey) {
+                lastElem.focus();
+                return false;
+            }
+        };
+
+
+
+    }
+
+    var form = document.forms[0];
+    var promptFormContainer = document.getElementById('prompt-form-container');
+
+    promptFormContainer.style.display = 'none';
+    form.style.display = 'none';
+
+    var buttonToShow = document.getElementById('show-button');
+    var divMess = document.getElementById('prompt-message');
+
+
+
+    buttonToShow.onclick = function () {
+
+        showPrompt("Введите что-нибудь<br>... умное :)", function(value) {
+            alert( value );
+        });
+
+    };
+
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+
+
+<style>
+    .arrow {
+        padding: 0;
+        background: #ddd;
+        border-radius: 15px;
+        border: 1px solid gray;
+        font-size: 24px;
+        line-height: 24px;
+        color: #444;
+        display: block;
+    }
+
+    .arrow:focus {
+        outline: none;
+    }
+
+    .arrow:hover {
+        background: #ccc;
+        cursor: pointer;
+    }
+
+    div {
+        background-color: #EEEEEE;
+        width: 480px;
+        height: 150px;
+        border: solid 1px darkgray;
+        border-radius: 15px;
+
+    }
+
+    span {
+        color: lightgreen;
+        width: 390px;
+        overflow: hidden;
+        display: block;
+        margin-left: 45px;
+        margin-top: 10px;
+
+    }
+
+    ul {
+        height: 130px;
+        width: 9999px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        /* убрать между inline-block li лишние пробелы, которые есть в HTML */
+        /* http://davidwalsh.name/remove-whitespace-inline-block */
+
+        font-size: 0;
+        margin-left: 0px;
+
+        -webkit-transition: margin-left 0.3s ease-out 0s;
+        -moz-transition: margin-left 0.3s ease-out 0s;
+        -o-transition: margin-left 0.3s ease-out 0s;
+        transition: margin-left 0.3s ease-out 0s;
+
+    }
+
+    ul img {
+        width: 130px;
+        height: 130px;
+        font-size: 14px;
+        /* по умолчанию inline, но в ряде браузеров это даст лишнее пространство вокруг элементов */
+
+        display: block;
+    }
+
+    ul li {
+        font-size: 0px;
+        /* если в HTML между элементами <li>..</li> есть пробелы, то они будут видны на странице,
+        чтобы их избежать, нужно либо писать <li>..</li><li>..</li> вплотную, либо не ставить закрывающие </li> */
+
+        display: inline-block;
+    }
+    #leftArr  {
+        float: left;
+        display: block;
+        margin-top: 57px;
+        margin-left: 10px;
+    }
+
+    #rightArr {
+        float: right;
+        display: block;
+        margin-top: 57px;
+        margin-right: 10px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- ваша верстка виджета, ваши стили -->
+
+
+<div>
+    <button id="leftArr" class="arrow">⇦</button>
+    <button id="rightArr" class="arrow">⇨</button>
+
+    <span>
+<ul>
+    <li><img src="https://js.cx/carousel/1.png"></li>
+    <li><img src="https://js.cx/carousel/2.png"></li>
+    <li><img src="https://js.cx/carousel/3.png"></li>
+    <li><img src="https://js.cx/carousel/4.png"></li>
+    <li><img src="https://js.cx/carousel/5.png"></li>
+    <li><img src="https://js.cx/carousel/6.png"></li>
+    <li><img src="https://js.cx/carousel/7.png"></li>
+    <li><img src="https://js.cx/carousel/8.png"></li>
+    <li><img src="https://js.cx/carousel/9.png"></li>
+    <li><img src="https://js.cx/carousel/10.png"></li>
+</ul>
+</span>
+</div>
+
+
+<script>
+
+    function turnLeft () {
+        var newPosition = position + 390;
+        newPosition = ( newPosition > 0 ) ? 0 : newPosition ;
+        ul.style.marginLeft = newPosition + 'px';
+        position = newPosition;
+    }
+
+    function turnRight () {
+        var picQuantity = document.getElementsByTagName('li').length;
+        var maxMargin = (( picQuantity * 130 ) - 390) * -1;
+        var newPosition = position - 390;
+        newPosition = ( newPosition < maxMargin ) ? maxMargin : newPosition ;
+        ul.style.marginLeft = newPosition + 'px';
+        position = newPosition;
+    }
+
+    var position = 0;
+
+    var ul = document.getElementsByTagName('ul')[0];
+    var leftButton = document.getElementById('leftArr');
+    var rightButton = document.getElementById('rightArr');
+    leftButton.addEventListener('click', turnLeft);
+    rightButton.addEventListener('click', turnRight);
+
+
+
+</script>
+
+<script>
+    // ваш код..
+</script>
+</body>
+
+</html>

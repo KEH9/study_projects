@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        /* общие стили для таблицы */
+
+        th {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        td {
+            width: 150px;
+            white-space: nowrap;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+        }
+
+        .nw {
+            background-color: #999;
+        }
+
+        .n {
+            background-color: #03f;
+            color: #fff;
+        }
+
+        .ne {
+            background-color: #ff6;
+        }
+
+        .w {
+            background-color: #ff0;
+        }
+
+        .c {
+            background-color: #60c;
+            color: #fff;
+        }
+
+        .e {
+            background-color: #09f;
+            color: #fff;
+        }
+
+        .sw {
+            background-color: #963;
+            color: #fff;
+        }
+
+        .s {
+            background-color: #f60;
+            color: #fff;
+        }
+
+        .se {
+            background-color: #0c3;
+            color: #fff;
+        }
+
+        .onEdit {
+            border: none;
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            resize: none;
+            /* remove resizing handle in Firefox */
+
+            outline: none;
+            /* remove outline on focus in Chrome */
+
+            position: relative;
+            padding: 0px;
+        }
+
+        button {
+            position: absolute;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<p>Кликните на ячейке для начала редактирования. Когда закончите -- нажмите OK или CANCEL.</p>
+
+<table id="bagua-table">
+    <tr>
+        <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    </tr>
+    <tr>
+        <td class="nw"><strong>Northwest</strong>
+            <br>Metal
+            <br>Silver
+            <br>Elders
+        </td>
+        <td class="n"><strong>North</strong>
+            <br>Water
+            <br>Blue
+            <br>Change
+        </td>
+        <td class="ne"><strong>Northeast</strong>
+            <br>Earth
+            <br>Yellow
+            <br>Direction
+        </td>
+    </tr>
+    <tr>
+        <td class="w"><strong>West</strong>
+            <br>Metal
+            <br>Gold
+            <br>Youth
+        </td>
+        <td class="c"><strong>Center</strong>
+            <br>All
+            <br>Purple
+            <br>Harmony
+        </td>
+        <td class="e"><strong>East</strong>
+            <br>Wood
+            <br>Blue
+            <br>Future
+        </td>
+    </tr>
+    <tr>
+        <td class="sw"><strong>Southwest</strong>
+            <br>Earth
+            <br>Brown
+            <br>Tranquility
+        </td>
+        <td class="s"><strong>South</strong>
+            <br>Fire
+            <br>Orange
+            <br>Fame
+        </td>
+        <td class="se"><strong>Southeast</strong>
+            <br>Wood
+            <br>Green
+            <br>Romance
+        </td>
+    </tr>
+
+</table>
+
+
+<script>
+
+    function editModeOn(cell) {
+
+        if (editModeIsOn == true) return;
+        editModeIsOn = true;
+        var textOfCell = cell.innerHTML;
+        var wi = cell.clientWidth + 'px';
+        var hi = cell.clientHeight + 'px';
+        cell.innerHTML = '';
+        cell.classList.add('onEdit');
+
+        var textArea = document.createElement('textarea');
+        textArea.style.width = wi;
+        textArea.style.height = hi;
+        textArea.value = textOfCell;
+        textArea.classList.add('onEdit');
+        textArea.focus();
+
+        cell.appendChild(textArea);
+
+        var buttonOk = document.createElement('button');
+        var buttonCancel = document.createElement('button');
+        buttonOk.textContent = 'Ok';
+        buttonCancel.textContent = 'Cancel';
+        buttonOk.style.left = cell.getBoundingClientRect().left + 4 + 'px';
+        buttonCancel.style.left = cell.getBoundingClientRect().left + 40 + 'px';
+        buttonOk.style.top = cell.getBoundingClientRect().bottom + 4 + 'px';
+        buttonCancel.style.top = cell.getBoundingClientRect().bottom + 4 + 'px';
+
+
+        document.body.appendChild(buttonOk);
+        document.body.appendChild(buttonCancel);
+
+        buttonOk.onclick = function () {
+            document.body.removeChild(buttonOk);
+            document.body.removeChild(buttonCancel);
+
+            cell.innerHTML = textArea.value;
+            cell.classList.remove('onEdit');
+
+            editModeIsOn = false;
+        };
+
+        buttonCancel.onclick = function () {
+            document.body.removeChild(buttonOk);
+            document.body.removeChild(buttonCancel);
+
+            cell.innerHTML = textOfCell;
+            cell.classList.remove('onEdit');
+
+            editModeIsOn = false;
+        };
+
+    }
+
+
+
+    function doOnClick (e) {
+
+        e = e || event;
+        var target = e.target;
+
+        while (target.nodeName != 'BODY') {
+
+            if (target.nodeName == 'BUTTON') return;
+            if (target.nodeName != 'TD') {
+                target = target.parentNode;
+            } else {break}
+        }
+
+        if (target.nodeName != 'TD') return;
+
+        editModeOn(target);
+
+
+
+    }
+
+    var table = document.getElementById('bagua-table');
+    var editModeIsOn = false;
+
+
+    document.addEventListener('click', doOnClick)
+
+
+
+
+
+</script>
+
+</body>
+
+</html>

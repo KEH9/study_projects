@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+
+<form>
+    <select>
+        <option value="Rock">Рок</option>
+        <option value="Blues" selected>Блюз</option>
+    </select>
+
+</form>
+
+
+<script>
+
+    var form = document.forms[0];
+    var sel = form.elements[0];
+
+    // ------------------------------
+    var option = new Option('Классика', 'Classic', true, true);
+    sel.appendChild(option);
+
+    //-------------------------------
+    for ( var i = 0 ; i < sel.options.length ; i++ ) {
+        if (sel.options[i].selected == true) {alert(sel.options[i].value + sel.options[i].innerHTML)}
+    }
+
+
+
+</script>
+
+</body>
+
+</html>

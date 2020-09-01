@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #matrix {
+            width: 400px;
+            margin: auto;
+            overflow: auto;
+            text-align: justify;
+        }
+        #down, #up {
+            top: 0px;
+            left: 0px;
+            color: green;
+            position: fixed;
+            font-size: 2em;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="up" hidden="true">▲</div>
+<div id="down" hidden="true">▼</div>
+
+<div id="matrix">
+    <script>
+        for (var i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+</div>
+
+<script>
+
+    function showUpButton () {
+
+        if (upButton.hidden) {
+            upButton.hidden = false;
+            downButton.hidden = true;
+        }
+        bookmark = scrollY;
+
+    }
+
+    var upButton = document.getElementById('up');
+    var downButton = document.getElementById('down');
+    var bookmark;
+
+
+    window.onscroll = function () {
+
+        var scrollY =  window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollY > document.documentElement.clientHeight) {
+            showUpButton();
+        }
+        if ((scrollY < (document.documentElement.clientHeight / 3)) && upButton.hidden == false) {
+            upButton.hidden = true;
+        }
+
+
+    };
+
+    upButton.onclick = function () {
+
+        window.scrollBy(0, -(window.pageYOffset || document.documentElement.scrollTop));
+        upButton.hidden = true;
+        downButton.hidden = false;
+        return false;
+    };
+
+    downButton.onclick = function () {
+
+        window.scrollBy(0, bookmark);
+        upButton.hidden = false;
+        downButton.hidden = true;
+        return false;
+
+    };
+
+
+
+
+
+
+</script>
+</body>
+
+</html>

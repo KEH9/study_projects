@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+
+        table{
+            border-collapse: collapse;
+
+        }
+
+        td, th {
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        th {
+
+            background-color: #E6E6E6;
+        }
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+
+<div id='cal'></div>
+
+<script>
+
+    function getLastDayOfMonth(year, month) {
+       var date = new Date(year, month, 0);
+       return date;
+    }
+
+    function createCalendar (id, year, month) {
+
+        var target = document.getElementById(id);
+        var calen = '';
+
+        var firstDay = new Date(year, month-1, 1);
+        var lastDay = getLastDayOfMonth(year, month);
+        var currentDay = firstDay;
+
+        var emptyFirst = '';
+        var firstDayOfW = firstDay.getDay();
+        if (firstDayOfW == 0) {firstDayOfW = 7}
+        for (var i = 0; i < firstDayOfW - 1 ; i++) {emptyFirst += '<td></td>'}
+
+        var emptyLast = '';
+        var lastDayOfW = lastDay.getDay();
+        if (lastDayOfW == 0) {lastDayOfW = 7}
+        for (var i = lastDayOfW; i < 7 ; i++) {emptyLast += '<td></td>'}
+
+        for (var i = 1; i <= lastDay.getDate(); i++) {
+            currentDay.setDate(i);
+            if (currentDay.getDay() == 1) { calen += '</tr><tr>'}
+
+            calen += '<td>' + currentDay.getDate() + '</td>';
+            var currMo = currentDay.getMonth();
+        }
+
+        //alert(lastDay.getMonth());
+        //alert(currMo);
+        var calendar =  '<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>'
+                + emptyFirst + calen + emptyLast + '</tr></table>';
+
+
+        target.innerHTML = calendar;
+
+    }
+
+
+    createCalendar("cal", 2012, 05)
+
+</script>
+
+</body>
+
+</html>

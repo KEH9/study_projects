@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+
+        #hour {
+            color: aqua;
+        }
+
+        #min {
+            color: #03dcff;
+        }
+
+        #sec {
+            color: #05b7ff;
+        }
+
+        
+
+    </style>
+
+</head>
+
+<body>
+
+<div id='clock'><span id="hour"></span>:<span id="min"></span>:<span id="sec"></span></div>
+
+<script>
+
+    function update () {
+
+        var hh = document.getElementById('hour'),
+                mm = document.getElementById('min'),
+                ss = document.getElementById('sec');
+
+        var currTime = new Date();
+        hh.innerHTML = currTime.getHours();
+        if (currTime.getHours() < 10) {hh.innerHTML = '0' + currTime.getHours()}
+
+        mm.innerHTML = currTime.getMinutes();
+        if (currTime.getMinutes() < 10) {mm.innerHTML = '0' + currTime.getMinutes()}
+
+        ss.innerHTML = currTime.getSeconds();
+        if (currTime.getSeconds() < 10) {ss.innerHTML = '0' + currTime.getSeconds()}
+
+    }
+
+    var timerId = setInterval(update, 1000);
+    update();
+
+</script>
+
+</body>
+
+</html>

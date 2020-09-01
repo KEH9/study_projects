@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+
+        #tip {
+            border: solid 1px lightgray;
+            border-radius: 4px;
+            box-shadow: 2px 2px 2px lightgray;
+            display: inline-block;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            background: #FFF;
+
+        }
+
+        body {
+            height: 2000px;
+            /* подсказка должна работать при прокрутке */
+        }
+
+        #house {
+            margin-top: 50px;
+            width: 400px;
+            border: 1px solid brown;
+        }
+
+        #roof {
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 20px solid brown;
+            margin-top: -20px;
+        }
+
+        p {
+            text-align: justify;
+            margin: 10px 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+<p> flfdnlkfdjhlkfdnlf sln dgs  ssdg g </p>
+<p> flfdnlkfdjhlkfdnlf sln dgs  ssdg g </p>
+<p> flfdnlkfdjhlkfdnlf sln dgs  ssdg g </p>
+<p> flfdnlkfdjhlkfdnlf sln dgs  ssdg g </p>
+<p> flfdnlkfdjhlkfdnlf sln dgs  ssdg g </p>
+<p> flfdnlkfdjhlkfdnlf sln dgs  ssdg g </p>
+
+<div data-tooltip="Это – внутренность дома" id="house">
+    <div data-tooltip="Это – крыша" id="roof"></div>
+
+    <p>Жили-были на свете три поросёнка. Три брата.</p>
+
+    <p>Все одинакового роста, кругленькие, розовые, с одинаковыми весёлыми хвостиками.</p>
+
+    <p>Даже имена у них были похожи. Звали поросят Ниф-Ниф, Нуф-Нуф и Наф-Наф. Всё лето они кувыркались в зелёной траве, грелись на солнышке, нежились в лужах.</p>
+
+    <p>Но вот наступила осень. <a href="http://ru.wikipedia.org/wiki/Три_поросёнка" data-tooltip="Читать дальше&hellip;">Наведи на меня</a></p>
+
+</div>
+
+<script>
+
+    function showTipsMouseover (target) {
+
+        var tip = target.getAttribute('data-tooltip');
+        if (!tip) {return}
+
+        var container = document.createElement('span');
+        container.innerHTML = tip;
+        container.id = 'tip';
+
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
+
+        document.body.appendChild(container);
+        var targetTop = target.offsetTop - scrollTop;
+        var tipHeight = container.offsetHeight;
+        document.body.removeChild(container);
+
+        var coord = target.getBoundingClientRect();
+
+        if ( tipHeight < (targetTop - 10) ) {
+            //Tip above container
+            container.style.top = coord.top  - tipHeight - 10 + scrollTop + 'px';
+            container.style.left = coord.left - 5 + scrollLeft + 'px';
+
+        } else {
+            //Tip below container
+            container.style.top = coord.bottom  + 10 + scrollTop + 'px';
+            container.style.left = coord.left - 5 + scrollLeft + 'px';
+
+        }
+
+
+        document.body.appendChild(container);
+
+
+    }
+
+    function showTipsMouseout (target) {
+        var tip = document.getElementById('tip');
+        if (!tip) {return}
+        document.body.removeChild(tip);
+    }
+
+
+
+    house.onmouseover = function (event) {
+
+        var target = event.target;
+        console.log(target.nodeType);
+
+        while (target.nodeType != 'BODY') {
+            if ( !!target.getAttribute('data-tooltip') ) break;
+            target = target.parentNode;
+        }
+
+        showTipsMouseover(target);
+
+    };
+
+    house.onmouseout = function (event) {
+
+        var target = event.target;
+
+        while (target.nodeType != 'BODY') {
+            if ( !!target.getAttribute('data-tooltip') ) break;
+            target = target.parentNode;
+        }
+
+        showTipsMouseout(target);
+
+    };
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

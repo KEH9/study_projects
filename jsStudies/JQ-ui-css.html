@@ -1,0 +1,81 @@
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <script src="./js/themeswitchertool.js"></script>
+        <style type="text/css">
+            #corner1, #corner2, #corner3, #corner4
+            {
+                width:300px;
+                height:110px;
+                border:1px solid;
+                padding:10px;
+                padding-top:40px;
+                margin:10px;
+            }
+            #icon
+            {
+                margin-left:auto;
+                margin-right:auto;
+            }
+        </style>
+    </head>
+    <body>
+    <p><b>1. С помощью группы предопределенных класов ui-widget оформите элементы ниже. <br /></b></p>
+    <div id="wrap1">
+        <h2 class="ui-widget-header">Сатурн</h2>
+        <p class="ui-widget-content"><b>Сатурн</b> — шестая планета от Солнца и вторая по размерам планета в Солнечной системе после Юпитера. Сатурн, а также Юпитер, Уран и Нептун, классифицируются как газовые гиганты. Сатурн назван в честь римского бога Сатурна, аналога греческого Кроноса (Титана, отца Зевса), вавилонского Нинурты и индийского Шани. </p>
+        <hr />
+        <h2 class="ui-widget-header">Нептун</h2>
+        <p class="ui-widget-content"><b>Нептун</b> — восьмая и самая дальняя планета Солнечной системы. Нептун также является четвёртой по диаметру и третьей по массе планетой. Масса Нептуна в 17,2 раза, а диаметр экватора в 3,9 раза больше таковых у Земли. Планета была названа в честь римского бога морей. </p>
+        <hr />
+        <h2 class="ui-widget-header">Меркурий</h2>
+        <p class="ui-widget-content"><b>Меркурий</b> — самая близкая к Солнцу планета Солнечной системы, обращается вокруг Солнца за 88 земных суток. Меркурий относится к внутренним планетам, так как его орбита проходит ближе к Солнцу, чем пояс астероидов. После лишения Плутона в 2006 году статуса планеты Меркурию перешло звание самой маленькой планеты Солнечной системы. Видимая звёздная величина Меркурия колеблется от ?1,9 до 5,5, но его нелегко заметить по причине очень маленького углового расстояния от Солнца.</p>
+    </div>
+    <hr />
+
+
+    <p><b>2.1. Сделайте все углы элемента с id=corner1 сглаженными.<br />
+        2.2. Сделайте нижние углы элемента с id=corner2 сглаженными.<br />
+        2.3. Сделайте верний левый угол элемента с id=corner3 сглаженным.<br />
+        2.4. Сделайте правые углы элемента с id=corner4 сглаженными.<br /></b></p>
+    <div id="corner1" class="ui-corner-all">
+        Я элемент с id=corner1. Сделайте мои углы сглаженными.
+    </div>
+
+    <div id="corner2" class="ui-corner-bottom">
+        Я элемент с id=corner2. Сделайте мои нижние углы сглаженными.
+    </div>
+
+    <div id="corner3" class="ui-corner-tl">
+        Я элемент с id=corner3. Сделайте мой верний левый угол сглаженным.
+    </div>
+
+    <div id="corner4" class="ui-corner-right">
+        Я элемент с id=corner4. Сделайте мои правые углы сглаженными.
+    </div>
+
+
+
+
+
+
+    <b>3. Вставьте подходящие иконки в элементы с id=icon.</b>
+    <br /><br />
+
+    <button>Информация<span id="icon" class="ui-icon ui-icon-info"></span></button>
+    <button>Предупреждение <span id="icon" class="ui-icon ui-icon-notice"> </span></button>
+    <button>Удалить <span id="icon" class="ui-icon ui-icon-scissors"> </span></button>
+    <br /><br />
+    <button style="margin-left:35px;">Вверх <span id="icon" class="ui-icon ui-icon-circle-triangle-n"></span></button>
+    <br /><br />
+    <button>Влево <span id="icon" class="ui-icon ui-icon-circle-triangle-w"></span></button>
+    <button>Вправо <span id="icon" class="ui-icon ui-icon-circle-triangle-e"></span></button>
+    <br /><br />
+    <button style="margin-left:35px;">Вниз <span id="icon" class="ui-icon ui-icon-circle-triangle-s"></span></button>
+    <br /><br />
+    <button>Увеличить <span id="icon" class="ui-icon ui-icon-zoomin"></span> </button> <button>Уменьшить <span id="icon" class="ui-icon ui-icon-zoomout"></span></button>
+    </body>
+    </html>

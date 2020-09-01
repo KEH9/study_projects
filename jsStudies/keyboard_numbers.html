@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+Введите ваш возраст:
+<input type="text">
+
+
+<script>
+
+    var inputForm = document.getElementsByTagName('input')[0];
+    inputForm.addEventListener('keypress', zzzz);
+            function zzzz (e) {
+                e = e || event;
+
+                var letter = getChar(e);
+
+                if (letter < '0' || letter > '9') {
+                    if (e.preventDefault()){
+                        e.preventDefault()
+                    } else {
+                        e.returnValue = false;
+                    }
+                }
+            }
+
+
+    function getChar(event) {
+        if (event.which == null) {
+            if (event.keyCode < 32) return null;
+            return String.fromCharCode(event.keyCode) // IE
+        }
+
+        if (event.which != 0 && event.charCode != 0) {
+            if (event.which < 32) return null;
+            return String.fromCharCode(event.which) // остальные
+        }
+
+        return null; // специальная клавиша
+    }
+
+
+
+</script>
+</body>
+
+</html>

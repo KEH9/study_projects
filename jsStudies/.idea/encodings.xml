@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/OOP.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/array.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/attributes.html" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/ball-bounce.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/date.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/deco.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/events.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/findingCoordinates.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/for_while.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/func.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hideWithDeligating.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/if.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/CoffeeMachine.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/CoffeeMachineProto.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/JSON.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/army.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/arr.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/arr2.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/article.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/bind.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/buffer.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/calc.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/date.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/debounce.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/delayDecorator.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/delayWrapper.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/formatDate.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/get-set.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/insertAfter.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/isEmptyObj.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/logDecorator.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/maxValueInObj.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/removeChildren.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/setInterval.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/sorting.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/source.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/source2.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/source3.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/spyDecorator.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/sum.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/throttle.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/truncate.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js/ucFirst.js" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/js2.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loc.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/math.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/obj.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/placeholder2.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rekur.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/scrollingCoordinates.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/string.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/superheroes.html" charset="UTF-8" />
+    <file url="PROJECT" charset="windows-1251" />
+  </component>
+</project>

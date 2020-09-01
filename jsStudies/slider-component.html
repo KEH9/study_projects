@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+<style>
+    .slider {
+        border-radius: 5px;
+        background: #E0E0E0;
+        background: -moz-linear-gradient(left top, #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+        background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+        background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+        width: 310px;
+        height: 15px;
+        margin: 5px;
+    }
+
+    .thumb {
+        width: 10px;
+        height: 25px;
+        border-radius: 3px;
+        position: relative;
+        left: 10px;
+        top: -5px;
+        background: blue;
+        cursor: pointer;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div id="slider" class="slider">
+    <div class="thumb"></div>
+</div>
+
+<script>
+
+    function getCoords(elem) { // кроме IE8-
+        var box = elem.getBoundingClientRect();
+
+        return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+        };
+    }
+
+    function Slider (options) {
+
+        var sliderElem = options.elem;
+        var thumbElem = sliderElem.children[0];
+
+        var sliderCoords, thumbCoords, shiftX, shiftY;
+
+        function startDrag (startClientX, startClientY) {
+
+            var thumbCoords = getCoords(thumbElem);
+            shiftX = event.pageX - thumbCoords.left;
+            shiftY = event.pageY - thumbCoords.top;
+
+            sliderCoords = getCoords(sliderElem);
+
+            document.addEventListener('mousemove', onDocumentMouseMove);
+            document.addEventListener('mouseup', onDocumentMouseUp);
+        }
+
+        thumbElem.ondragstart = function() {
+            return false;
+        };
+
+        thumbElem.onmousedown = function(event) {
+
+            if (event.target.closest('.thumb')) {
+                startDrag(event.clientX, event.clientY);
+            }
+            return false;
+        };
+
+        function moveTo (clientX) {
+            //  вычесть координату родителя, т.к. position: relative
+            var newLeft = event.pageX - shiftX - sliderCoords.left;
+
+            // курсор ушёл вне слайдера
+            if (newLeft < 0) {
+                newLeft = 0;
+            }
+            var rightEdge = sliderElem.offsetWidth - thumbElem.offsetWidth;
+            if (newLeft > rightEdge) {
+                newLeft = rightEdge;
+            }
+
+            thumbElem.style.left = newLeft + 'px';
+        }
+
+        function onDocumentMouseMove (event) {
+            moveTo(event.clientX);
+        }
+
+
+        function onDocumentMouseUp () {
+            endDrag();
+        }
+
+        function endDrag () {
+
+            document.removeEventListener('mousemove', onDocumentMouseMove);
+            document.removeEventListener('mouseup', onDocumentMouseUp);
+        }
+
+
+    }
+
+    var slider = new Slider({
+        elem: document.getElementById('slider')
+    });
+
+</script>
+
+</body>
+
+</html>

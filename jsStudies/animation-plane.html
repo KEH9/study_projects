@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        img {
+            cursor: pointer;
+        }
+
+        #flyjet {
+            width: 40px;
+            /* -> 400px */
+
+            height: 24px;
+            /* -> 240px */
+
+        }
+
+        #flyjet.growing {
+            width: 400px;
+            height: 240px;
+            transition: all 3s cubic-bezier(.5, .5, .5, 2);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<img id="flyjet" src="https://js.cx/clipart/flyjet.jpg">
+
+<script>
+
+
+    var flyjet = document.getElementById('flyjet');
+
+    flyjet.onclick = function() {
+
+        flyjet.classList.add('growing');
+
+        var transitionend = false;
+        flyjet.addEventListener('transitionend', function() {
+            if (!transitionend) {
+                alert('Done!!!');
+                transitionend = true;
+            }
+
+        });
+
+    };
+
+
+
+
+
+</script>
+
+</body>
+
+</html>

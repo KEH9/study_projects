@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src="https://js.cx/libs/animate.js"></script>
+    <style>
+        #field {
+            height: 200px;
+            border-bottom: 3px black groove;
+            position: relative;
+        }
+
+        #ball {
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div id="field">
+    <img id="ball" src="https://js.cx/clipart/ball.svg" width="40" height="40" id="ball">
+</div>
+
+
+<script>
+
+    function timing (timeFraction) {
+        return timeFraction;
+
+    }
+
+
+    function draw (progress) {
+        ball.style.top = progress * 160 + 'px';
+    }
+
+
+    function animate(options) {
+
+        var start = performance.now();
+
+        requestAnimationFrame(function animate(time) {
+            // timeFraction от 0 до 1
+            var timeFraction = (time - start) / options.duration;
+            if (timeFraction > 1) timeFraction = 1;
+
+            // текущее состояние анимации
+            var progress = options.timing(timeFraction);
+
+            options.draw(progress, timeFraction);
+
+            if (timeFraction < 1) {
+                requestAnimationFrame(animate);
+            }
+
+        });
+    }
+
+    // обычный вариант
+    function bounce(timeFraction) {
+        for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
+            if (timeFraction >= (7 - 4 * a) / 11) {
+                return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2);
+            }
+        }
+    }
+
+    // преобразователь в easeOut
+    function makeEaseOut(timing) {
+        return function(timeFraction) {
+            return 1 - timing(1 - timeFraction);
+        }
+    }
+
+
+
+    var field = document.getElementById('field');
+    var ball = document.getElementById('ball');
+    var toX = 100;
+    var toY = field.clientHeight - ball.clientHeight;
+
+
+
+    animate({
+        duration: 2000,
+        timing: makeEaseOut(bounce),
+        draw: function(progress, timeFraction) {
+            ball.style.left = toX * timeFraction + 'px';
+            ball.style.top = toY * progress + 'px';
+        }
+    });
+
+
+
+</script>
+
+
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?127"></script>
+
+<!-- VK Widget -->
+<div id="vk_contact_us"></div>
+<script type="text/javascript">
+    VK.Widgets.ContactUs("vk_contact_us", {redesign: 1}, 1605493);
+</script>
+
+
+
+</body>
+
+</html>

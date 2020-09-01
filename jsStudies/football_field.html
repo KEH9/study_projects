@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #field {
+            width: 200px;
+            height: 150px;
+            border: 10px groove black;
+            background-color: #00FF00;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #ball {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -20px;
+            margin-top: -20px;
+            -webkit-transition: all 0.5s ease-out 0s;
+            -moz-transition: all 0.5s ease-out 0s;
+            -o-transition: all 0.5s ease-out 0s;
+            transition: all 0.5s ease-out 0s;
+        }
+    </style>
+</head>
+
+<body style="height:2000px">
+
+Кликните на любое место поля, чтобы мяч перелетел туда.
+<br> Мяч никогда не вылетит за границы поля.
+
+
+<div id="field">
+    <img src="https://js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</div>
+
+<h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+<p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют
+    тёлками.
+</p>
+<h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+<p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют
+    тёлками.
+</p>
+<h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+<p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют
+    тёлками.
+</p>
+<h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+<p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют
+    тёлками.
+</p>
+<h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+<p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют
+    тёлками.
+</p>
+
+
+
+<script>
+
+    function ballMovement (event) {
+
+//        alert(event.clientX + ' : ' + event.clientY);
+        var ball = document.getElementById('ball');
+        var x = event.clientX - x1 + pageXOffset;
+        var y = event.clientY - y1 + pageYOffset;
+
+		
+        if (x < 20) { x = 20 };
+        if (y < 20) { y = 20 };
+        if (x > (x2 - x1 - 20)) { x = (x2 - x1 - 20) };
+        if (y > (y2 - y1 - 20)) { y = (y2 - y1 - 20) };
+
+
+        ball.style.position = 'absolute';
+        ball.style.left = x + 'px';
+        ball.style.top = y + 'px';
+
+    }
+
+    var field = document.getElementById('field');
+    var x1 = field.offsetLeft + parseFloat(getComputedStyle(field).borderLeftWidth);
+    var x2 = x1 + field.offsetWidth - parseFloat(getComputedStyle(field).borderLeftWidth) - parseFloat(getComputedStyle(field).borderRightWidth);
+    var y1 = field.offsetTop + parseFloat(getComputedStyle(field).borderTopWidth);
+    var y2 = y1 + field.offsetHeight - parseFloat(getComputedStyle(field).borderTopWidth) - parseFloat(getComputedStyle(field).borderBottomWidth);
+//    alert('x1 = ' + x1 + ' x2 = ' + x2 + ' y1 = ' + y1 + ' y2 = ' + y2 );
+    field.addEventListener('click', ballMovement);
+
+
+</script>
+
+</body>
+
+</html>

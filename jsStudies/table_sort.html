@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+
+        table {
+            width: 300px;
+            border: 1px solid #a52a2a;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        table th {
+            background: #a52a2a;
+            color: white;
+        }
+        table td {
+            border-bottom: 1px solid black;
+        }
+        table td, table th {
+            padding: 4px;
+        }
+
+        tr:nth-of-type(2n+1) {
+            background: #FFF8DC;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<table>
+<tbody><tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Отчество</th>
+    <th>Возраст</th>
+</tr>
+<tr>
+    <td>Вася</td>
+    <td>Петров</td>
+    <td>Александрович</td>
+    <td>10</td>
+</tr>
+<tr>
+    <td>Петя</td>
+    <td>Иванов</td>
+    <td>Петрович</td>
+    <td>25</td>
+</tr>
+<tr>
+    <td>Владимир</td>
+    <td>Ленин</td>
+    <td>Ильич</td>
+    <td>6</td>
+</tr>
+</tbody>
+</table>
+
+<script>
+
+    /**
+     * Сортирует таблицу (удаляет старую и делает новую)
+     *
+     * @param tab      {[object HTMLTableElement]}     сортируемая таблица
+     * @param column    {number}                        номер столбца, начиная с 0
+     * @param numeric   [boolean]                       сортировка цифр?
+     *
+     */
+    function tableSort (tab, column, numeric) {
+        function getSortingValues (column) {
+            var sortingValues = [];
+            for ( i = 0 ; i < rows.length ; i++ ) {
+                var currentSortingValue = rows[i].children[column].textContent;
+                sortingValues.push(currentSortingValue);
+            }
+            return sortingValues;
+        }
+
+        function makeNewTableBody() {
+
+            var tabBody = document.createElement('tbody');
+            var tabHead = rows[0];
+            tabBody.appendChild(tabHead);
+            return tabBody;
+
+        }
+
+        var rows = tab.getElementsByTagName('tr');
+        var tabBody = makeNewTableBody();
+        var sortingValues = getSortingValues(column);
+
+        if (numeric) {
+            sortingValues.sort(function(a, b){return +a - +b;});
+        } else {
+            sortingValues.sort(function(a, b){
+                if (a == b)
+                    return 0;
+                if (a < b)
+                    return -1;
+                else
+                    return 1;
+            });
+        }
+
+        for ( var i = 0 ; i < sortingValues.length ; i++ ) {
+
+            for ( j = 0 ; j < rows.length ; j++ ) {
+
+                if (rows[j].children[column].textContent == sortingValues[i]) {
+                    tabBody.appendChild(rows[j]);
+                }
+            }
+        }
+
+        tab.removeChild(tab.getElementsByTagName('tbody')[0]);
+        tab.appendChild(tabBody);
+
+
+    }
+
+    var tab1 = document.getElementsByTagName('table')[0];
+    var column = 2;
+    var numeric = false;
+
+    tableSort(tab1, column, numeric);
+
+
+
+</script>
+
+
+
+
+</body>
+
+</html>

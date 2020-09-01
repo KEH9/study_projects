@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #contents {
+            padding: 5px;
+            border: 1px green solid;
+        }
+    </style>
+</head>
+
+<body>
+
+<fieldset id="contents">
+    <legend>#contents</legend>
+    <p>
+        Как насчет почитать <a href="http://wikipedia.org">Википедию</a>, или посетить <a href="http://w3.org"><i>W3.org</i></a> и узнать про современные стандарты?
+    </p>
+</fieldset>
+
+<script>
+
+    function onclick (event) {
+
+        function isNodeA (node) {
+            while (node.nodeName != '#document') {
+                if (node.nodeName == 'A'){return true}
+                node = node.parentNode;
+            }
+
+            return false
+
+        }
+
+        var target = event.target;
+        if (!!isNodeA(target)) {
+            var conf = confirm('Leave this page?');
+            if (!conf) {
+                event = event || window.event;
+
+                if (event.preventDefault) { // если метод существует
+                    event.preventDefault(); // то вызвать его
+                } else { // иначе вариант IE8-:
+                    event.returnValue = false;
+                }
+
+            }
+        }
+
+
+
+    }
+
+    document.addEventListener('click', onclick);
+
+
+
+</script>
+
+
+</body>
+
+</html>

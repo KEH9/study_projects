@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        td select,
+        td input {
+            width: 150px;
+        }
+
+        #diagram td {
+            vertical-align: bottom;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #diagram div {
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+
+Калькулятор процентов, из расчёта 12% годовых.
+<form name="calculator">
+    <table>
+        <tr>
+            <td>Сумма</td>
+            <td>
+                <input name="money" type="text" value="10000">
+            </td>
+        </tr>
+        <tr>
+            <td>Срок в месяцах</td>
+            <td>
+                <select name="months">
+                    <option value="3">3 (минимум)</option>
+                    <option value="6">6 (полгода)</option>
+                    <option value="12" selected>12 (год)</option>
+                    <option value="18">18 (1.5 года)</option>
+                    <option value="24">24 (2 года)</option>
+                    <option value="30">30 (2.5 года)</option>
+                    <option value="36">36 (3 года)</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>С капитализацией</td>
+            <td>
+                <input name="capitalization" type="checkbox">
+            </td>
+        </tr>
+    </table>
+
+
+</form>
+
+
+<table id="diagram">
+    <tr>
+        <th>Было:</th>
+        <th>Станет:</th>
+    </tr>
+    <tr>
+        <th id="money-before"></th>
+        <th id="money-after"></th>
+    </tr>
+    <tr>
+        <td>
+            <div style="background: red;width:40px;height:100px"></div>
+        </td>
+        <td>
+            <div style="background: green;width:40px;height:0" id="height-after"></div>
+        </td>
+    </tr>
+</table>
+
+<script>
+    // вспомогательная функция для получения символа из события keypress
+    // (вдруг понадобится))
+    function getChar(event) {
+        if (event.which == null) {
+            if (event.keyCode < 32) return null;
+            return String.fromCharCode(event.keyCode); // IE
+        }
+
+        if (event.which != 0 && event.charCode != 0) {
+            if (event.which < 32) return null;
+            return String.fromCharCode(event.which); // остальные
+        }
+
+//        return null; // специальная клавиша
+    }
+
+    function numOnly (e) {
+        e = e || event;
+
+        var letter = getChar(e);
+
+        if (letter < '0' || letter > '9') {
+            if (e.preventDefault()){
+                e.preventDefault()
+            } else {
+                e.returnValue = false;
+            }
+        }
+    }
+
+    function recalculate () {
+
+        deposit = +money.value;
+        document.getElementById('money-before').innerHTML = deposit;
+        period = +form.months.value;
+        capitalisation = form.capitalization.checked;
+
+        if (!capitalisation) {
+            withdrawal = Math.round(deposit * ((period * 1 / 100) + 1));
+        } else {
+            withdrawal = Math.round(deposit * Math.pow(((1 / 100) + 1),  period));
+        }
+
+        document.getElementById('money-after').innerHTML = withdrawal;
+        document.getElementById('height-after').style.height = (withdrawal / deposit * 100) + 'px';
+
+    }
+
+
+
+    var form = document.forms.calculator;
+    var money = form.money;
+    var deposit, withdrawal, period, capitalisation;
+
+
+    money.addEventListener('keypress', numOnly);
+    money.addEventListener('input', recalculate);
+    form.capitalization.addEventListener('change', recalculate);
+    form.months.addEventListener('change', recalculate);
+
+    recalculate();
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

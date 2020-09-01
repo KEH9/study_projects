@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="my.css">
+</head>
+
+<body>
+
+<ul>
+    <li>Ctrl-E to start editing.</li>
+    <li>While editing: Ctrl-S to save, Esc to cancel.</li>
+</ul>
+
+
+<textarea id="area"></textarea>
+<div id="view">Text</div>
+
+<script>
+
+    function ctrlE () {
+
+        document.body.removeChild(div);
+        document.body.appendChild(textarea);
+
+    }
+
+    function ctrlS () {
+
+        var text = textarea.value;
+        div.innerHTML = text;
+        document.body.removeChild(textarea);
+        document.body.appendChild(div);
+
+    }
+
+    function esc () {
+
+        document.body.removeChild(textarea);
+        document.body.appendChild(div);
+        textarea.value = '';
+        div.innerHTML = '';
+
+    }
+
+    var textarea = document.getElementById('area');
+    document.body.removeChild(textarea);
+    var div = document.getElementById('view');
+
+
+    document.body.onkeydown = function (e) {
+
+        e = e || event;
+        var button = e.keyCode;
+
+        if (!!e.ctrlKey) {
+            if (e.preventDefault()){
+                e.preventDefault()
+            } else {
+                e.returnValue = false;
+            }
+        }
+
+
+
+
+        if (!!e.ctrlKey && button == 69) ctrlE();
+        if (!!e.ctrlKey && button == 83) ctrlS();
+        if (button == 27) esc();
+
+    }
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

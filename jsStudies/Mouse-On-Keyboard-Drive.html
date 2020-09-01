@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #mouse {
+            display: inline-block;
+            cursor: pointer;
+            margin: 0;
+
+        }
+
+        #mouse:focus {
+            outline: 1px dashed black;
+            left: 0px;
+            top: 0px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+<p>Кликните на мышонка и передвигайте его, нажимая клавиши со стрелками.</p>
+
+  <pre id="mouse" tabindex="99">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+<script>
+
+    function mouseKeypress (e) {
+
+        e = e || event;
+
+        var button = e.keyCode;
+
+//        alert(button);
+
+        switch (button) {
+
+            case 37:
+                mouse.style.left = parseInt(getComputedStyle(mouse).left) - 20 + 'px';
+                break;
+            case 38:
+                mouse.style.top = parseInt(getComputedStyle(mouse).top) - 20 + 'px';
+                break;
+            case 39:
+                mouse.style.left = parseInt(getComputedStyle(mouse).left) + 20 + 'px';
+                break;
+            case 40:
+                mouse.style.top = parseInt(getComputedStyle(mouse).top) + 20 + 'px';
+                break;
+
+
+        }
+
+    }
+
+    var mouse = document.getElementById('mouse');
+
+    mouse.onfocus = function () {
+
+        document.addEventListener('keydown', mouseKeypress);
+    }
+
+
+
+
+</script>
+
+</body>
+
+</html>

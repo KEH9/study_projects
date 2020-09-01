@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #field {
+            background: url(https://js.cx/drag-heroes/field.png);
+            width: 800px;
+            height: 600px;
+            float: left;
+        }
+        /* герои и мяч (переносимые элементы) */
+
+        .hero {
+            background: url(https://js.cx/drag-heroes/heroes.png);
+            width: 130px;
+            height: 128px;
+            float: left;
+        }
+
+        #hero1 {
+            background-position: 0 0;
+        }
+
+        #hero2 {
+            background-position: 0 -128px;
+        }
+
+        #hero3 {
+            background-position: -120px 0;
+        }
+
+        #hero4 {
+            background-position: -125px -128px;
+        }
+
+        #hero5 {
+            background-position: -248px -128px;
+        }
+
+        #hero6 {
+            background-position: -244px 0;
+        }
+
+        .draggable {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h2>Расставьте супергероев по полю.</h2>
+
+<p>Супергерои и мяч -- это элементы с классом "draggable". Сделайте так, чтобы их можно было переносить.</p>
+
+<p>Важно: если супергероя подносят к низу или верху страницы, она должна автоматически прокручиваться. Если страница помещается на вашем экране целиком и не имеет вертикальной прокрутки -- сделайте окно браузера меньше, чтобы протестировать эту возможность.</p>
+
+<p>Да, и ещё: супергерои ни при каких условиях не должны попасть за край экрана.</p>
+
+<div id="field">
+
+</div>
+
+<div class="hero draggable" id="hero1"></div>
+<div class="hero draggable" id="hero2"></div>
+<div class="hero draggable" id="hero3"></div>
+<div class="hero draggable" id="hero4"></div>
+<div class="hero draggable" id="hero5"></div>
+<div class="hero draggable" id="hero6"></div>
+
+<img src="https://js.cx/drag-heroes/ball.png" class="draggable">
+
+<div style="clear:both"></div>
+
+<script>
+
+
+    function doMouseDown (e) {
+
+
+        function getCoords (elem) { // кроме IE8-
+            var box = elem.getBoundingClientRect();
+
+            return {
+                top: box.top + pageYOffset,
+                left: box.left + pageXOffset
+            };
+
+        }
+
+
+        function moveAt (e) {
+
+            var newX = e.clientX - shiftX;
+            var newY = e.clientY - shiftY;
+
+
+            var newBottom = newY + target.offsetHeight;
+            if (newBottom > document.documentElement.clientHeight) {
+                var docBottom = document.documentElement.getBoundingClientRect().bottom;
+                var scrollY = Math.min(10, docBottom - newBottom);
+                if (scrollY < 0) scrollY = 0 ;
+                window.scrollBy(0, scrollY);
+                newY = Math.min(newY, document.documentElement.clientHeight - target.offsetHeight);
+            }
+
+
+            if (newY < 0) {
+                var scrollY = Math.max(-10, newY);
+                if (scrollY > 0) scrollY = 0;
+                window.scrollBy(0, scrollY);
+                newY = Math.max(newY, 0);
+            }
+
+
+
+            target.style.left = newX + 'px';
+            target.style.top = newY + 'px';
+
+
+
+        }
+
+
+        var target = e.target;
+        if (!target.classList.contains('draggable')) { return };
+
+        var coords = getCoords(target);
+        var shiftX = e.pageX - coords.left;
+        var shiftY = e.pageY - coords.top;
+        target.style.position = 'fixed';
+        document.body.appendChild(target);
+
+        moveAt(e);
+
+        document.onmousemove = function (e) { moveAt(e) };
+
+        document.onmouseup = function () {
+
+            document.onmousemove = null;
+            document.onmouseup = null;
+            target.style.top = parseInt(target.style.top) + pageYOffset + 'px';
+            target.style.position = 'absolute';
+        };
+
+        target.ondragstart = function() {return false};
+
+        return false;
+
+    }
+
+    document.addEventListener('mousedown', doMouseDown);
+    document.onmousedown = function () {return false};
+
+
+
+
+</script>
+</body>
+
+</html>

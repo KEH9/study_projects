@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<script>
+    function preloadImages(sources, callback) {
+
+        var loaded = 0;
+        var shouldBeLoaded = sources.length;
+
+        for ( var i = 0 ; i < shouldBeLoaded ; i++) {
+            var img = document.createElement('img');
+            img.src = sources[i];
+
+            img.onload = function () {
+                loaded += 1;
+            console.log('loaded');
+            };
+            img.onerror = function () {
+                loaded += 1;
+                console.log('error');
+            };
+
+        }
+
+        var timerId = setInterval(function () {
+
+            if (loaded == shouldBeLoaded) {
+                callback();
+                clearInterval(timerId);
+            }
+        }, 100)
+
+
+
+    }
+
+    // ---------- Проверка ----------
+
+    /* файлы для загрузки */
+    var sources = [
+        "https://js.cx/images-load/1.jpg",
+        "https://js.cx/images-load/2.jpg",
+        "https://js.cx/images-load/3.jpg"
+    ];
+    for (var i = 0; i < sources.length; i++) {
+        sources[i] += '?' + Math.random(); // добавляем параметр, чтобы без кеша (для теста)
+    }
+
+    /** если картинка загружена, то можно будет сразу получить её ширину
+     * создадим все картинки и проверим, есть ли у них ширина
+     */
+    function testLoaded() {
+        var widthSum = 0;
+        for (var i = 0; i < sources.length; i++) {
+            var img = document.createElement('img');
+            img.src = sources[i];
+            widthSum += img.width;
+        }
+        // каждое изображение 100x100, общая ширина должна быть 300px
+        alert(widthSum);
+    }
+
+    // до загрузки - выведет 0
+    testLoaded();
+
+    // после загрузки - выведет 300
+    preloadImages(sources, testLoaded);
+</script>
+
+</body>
+
+</html>
