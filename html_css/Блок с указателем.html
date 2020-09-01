@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Блок с указателем</title>
+  <style>
+
+  body {
+  margin: 20px;  
+  background: #333;
+  }
+
+  .bwsh {
+  margin-top: 100px;
+  background: #88B7D5;
+  color: #fff;
+  font: 16px/60px Times, serif;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  border: 3px solid #C2E1F5;
+   
+  
+  }
+  
+  .bwsh:before {
+  content: "";
+  border: 36px solid; 
+	border-color: transparent transparent #C2E1F5 transparent; 
+  position: absolute;
+  margin-top: -72px;
+  left: 46%;
+
+  
+  }
+
+  .bwsh:after {
+  content: "";
+  border: 30px solid; 
+	border-color: transparent transparent #88B7D5 transparent; 
+  position: absolute;
+  margin-top: -60px;
+  left:46.5%;
+  left: calc(46% + 6px);
+          
+  
+  }
+    
+
+    
+  </style>
+ </head>
+ <body>
+
+  
+  <script type="text/javascript">
+   alert ("Я – JavaScript!");
+  </script>
+
+
+
+
+
+  <div class="bwsh">
+   Дистанции огромного размера
+  </div>
+
+                   
+ </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>форма обязательные поля </title>
+  <style>
+  
+  p {
+
+  }
+
+  input:invalid + span:after {
+  content: url(images/no.png);
+  padding-left: 5px;
+  }
+
+  input:valid + span:after {
+  content: url(images/yes.png);
+  padding-left: 5px;
+  }
+
+
+  button {
+  border-radius: 3px;
+  
+  }
+
+  .glamur {
+  border-radius: 5px;
+  border: 1px solid grey;
+
+  </style>
+ </head>
+ 
+ <body>
+
+    <p>Пожалуйста заполните обязательные поля.</p>
+    <p>
+    Имя:
+    <input type="text" required>
+    <span></span>
+    </p>
+      
+    <p>
+    Возраст:
+    <input type="number" min="1" max="200" value="1" style="width:50px">
+    <span></span>
+    </p>
+      
+    <p>
+    E-mail:
+    <input type="email" required>
+    <span></span>
+    </p>
+      
+    <p>
+    Сайт:
+    <input type="url">
+    <span></span>
+    </p>
+      
+    <button type="submit" class="glamur">
+     Отправить
+    </button>
+
+ </body>
+</html>

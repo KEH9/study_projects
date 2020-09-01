@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>ТТХ</title>
+  <style>
+
+  .cut {
+  width: 360px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  z-index: 2;
+  
+  }
+
+  span {
+  margin-top: 10px;
+  margin-left: 15px;
+  position: absolute;
+  transform: skewX(30deg);  
+  -webkit-transform:skewX(30deg);
+  }
+
+
+  .box {
+  width: 350px;
+  height: 40px;
+  background: #878F94;
+  transform: skewX(-30deg);
+  -webkit-transform:skewX(-30deg);   
+  position: relative;
+  margin-left: 5px;
+  margin-top: 5px;
+  }
+
+  .gb, .ye, .or, .gr {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  width: 20px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  z-index: 3;
+  
+  }
+
+  .gb {background: #51DBB3;}
+  .ye {background: #DBD651;}
+  .or {background: #DB8F51;}
+  .gr {background: #D3D5D4;}
+
+  .n1 {right: 170px;}
+  .n2 {right: 140px;}
+  .n3 {right: 110px;}
+  .n4 {right: 80px;}
+  .n5 {right: 50px;}
+  .n6 {right: 20px;}
+
+
+
+  </style>
+ </head>
+ <body>
+  
+  <div>
+   Тактико - техническая лабуда
+  </div>
+  <div class="cut"> 
+   <div class="box"><span>Уровень зарядки</span> 
+    <div class="gb n1"></div>
+    <div class="gb n2"></div>
+    <div class="ye n3"></div>
+    <div class="ye n4"></div>
+    <div class="or n5"></div>
+    <div class="or n6"></div>
+   </div>
+  </div>
+  
+  <div class="cut"> 
+   <div class="box"> <span>Убойная сила</span>
+    <div class="gb n1"></div>
+    <div class="gb n2"></div>
+    <div class="ye n3"></div>
+    <div class="gr n4"></div>
+    <div class="gr n5"></div>
+    <div class="gr n6"></div>
+   </div>
+  </div>
+  
+  <div class="cut"> 
+   <div class="box"> <span>Перезарядка</span>
+    <div class="gb n1"></div>
+    <div class="gr n2"></div>
+    <div class="gr n3"></div>
+    <div class="gr n4"></div>
+    <div class="gr n5"></div>
+    <div class="gr n6"></div>
+   </div>
+  </div>
+
+
+ </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Закругленные уголки</title>
+  <style type="text/css">
+   .color_block {
+    border: 2px #808080 solid; /* Параметры рамки */
+    background: #e3ffec; /* Цвет фона */
+   }
+   em.bt, em.bt b, em.bb, em.bb b {
+    display: block; /* Блочный элемент */
+    height: 10px; /* Высота уголка */
+    font-size: 0; /* Размер шрифта */
+    background: url(images/corners.png) no-repeat; /* Путь к файлу с уголками */
+    position: relative; /* Относительное позиционирование */
+   }
+   em.bt { 
+    top: -2px; /* Сдвигаем левый верхний уголок вверх */
+    left: -2px; /* Сдвигаем влево */
+   }
+   em.bt b {
+    background-position:  100% -10px; /* Рисунок сдвигается к следующему уголку */
+    left: 4px; /* Сдвигаем вправо */
+   }
+   em.bb { background-position: 0 -20px; top: 2px; left: -2px; }
+   em.bb b { background-position: 100% -30px; left: 4px; }
+   .color_block .block_content {
+    padding: 0 7px; /* Поля вокруг текста */
+   }
+  </style>
+  </head>
+  <body> 
+   <div class="color_block">
+    <em class="bt"><b>&nbsp;</b></em>
+    <div class="block_content">
+     Чтобы изготовить пугало для горного поля, делают фигуру человека, 
+     который держит в руках лук и стрелы. Птицы и звери видят его 
+     и убегают. И хотя у пугала нет никаких намерений, олень не 
+     подойдет к нему близко. Так пугало выполняет свое назначение, 
+     и поэтому говорят, что оно стоит в горном поле не напрасно. 
+    </div>
+    <em class="bb"><b>&nbsp;</b></em>
+   </div>
+ </body>
+</html>

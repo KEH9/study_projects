@@ -1,0 +1,54 @@
+Базовые: 
+Boolean , Number , String , Array , Any , 
+Tuple  - массив с фиксированным кол-вом элементов и типом каждого из них    let x: [string, number]
+Enum - набор в {}.  enum Color {Red, Green, Blue}; let c: Color = Color.Green; ключи так же молгут иметь и значения (Red = 2).
+Void - ничто (обычно возврат функции, которая ни чего не возвращает)
+теги <Х> в начале функции - это "переменные типов" как аргументы, только не значения , а их типы. Х может extends интерфейсы
+
+interface LabelledValue {
+    label: string;
+} (названия интерфейсов всегда с большой буквы)
+label?: string;    если свойство не обязательно
+readonly label: string;    если свойство нельзя перезаписать. Так же есть ReadonlyArray<number>
+
+для функций описывают возвращаемое значение 
+interface Func {
+    (source: string, subString: string): boolean;
+}
+
+класс (только ли?) может implements интерфейс
+
+interface Б extends А      - Б будет включать в себя и параметры А и параметры Б. Можно interface В extends А, Б
+Так же интерфейс может extends класс - тогда он получит типы класса, но не методы.
+
+Модификаторы доступа (только для классов)
+public по умолчанию
+private - доступен только внутри класса
+protected - как private, но еще и не доступен в потомках
+readonly
+
+get, set - работают автоматом
+class Employee {
+    private _fullName: string;
+ 
+    get fullName(): string {
+        return this._fullName;
+    }
+}
+
+abstract class A {} - нельзя использовать напрямую, только другой класс может extends А
+
+Можно указывать разные типы (или или) string | number, но при объединении типов (интерфейсы или классы и пр) будет работать только если в обоих частях есть этот тип. Чтобы работало конкретнее нужно указать интерфейс конкретнее (<inter>lala).zoom
+
+type - ? похоже показывает тип переменной/объекта/...
+keyof - показывает ключи объекта/интерфейса и пр.
+
+namespace zzz {} - создает группу сущностей, внутри нужен export, затем сущности доступны по zzz.сущность
+
+declare - Declare vs. var creates a new variable. declare is used to tell TypeScript that the variable has been created elsewhere. If you use declare, nothing is added to the JavaScript that is generated - it is simply a hint to the compiler.
+
+tsx - расширение для typescript + JSX
+
+
+
+

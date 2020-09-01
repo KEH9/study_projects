@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Вырезанные уголки</title>
+  <style>
+body {
+  font: 1em Verdana;
+  font-weight: bold;
+}
+div {
+  width: 500px;
+  height: 100px;
+  background: rgb(0,128,0);
+  margin: 50px auto;
+  line-height: 100px;
+  text-indent: 25px;
+  color: #fff;
+  position: relative;
+}
+/* 1 Способ */
+#pseudo::before, div::after {
+  content: " ";
+  width: 8px;
+  height: 80px;
+  display: block;
+  position: absolute;
+  top: 10%;
+  background: rgb(0,128,0);
+}
+#pseudo::before {
+  left: -8px;
+}
+#pseudo::after {
+  right: -8px;
+}
+/* -------------------- */
+/* 2 Способ */
+#box-shadow {
+  box-shadow: 0 8px rgb(0,128,0), 0 -8px rgb(0,128,0), 8px 0 rgb(0,128,0), -8px 0 rgb(0,128,0);
+}
+/* -------------------- */
+/* 3 Способ */
+#pseudo-border::before, #pseudo-border::after {
+  content: " ";
+  width: 10px;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  background: rgb(0,128,0);
+  border-top: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+}
+#pseudo-border::before {
+  left: 0;
+}
+#pseudo-border::after {
+  right: 0;
+}
+/* -------------------- */
+  </style>
+ </head>
+ 
+ <body>
+<div id="pseudo">Содержимое</div>
+<div id="box-shadow">Содержимое</div>
+<div id="pseudo-border">Содержимое</div>
+ </body>
+</html>

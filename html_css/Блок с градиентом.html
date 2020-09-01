@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Блок с градиентом</title>
+  <style>
+
+  body {
+  background-image: url(images/orpol.png);
+  }
+
+  .outer {
+  width: 400px;
+  min-height: 100px;
+  background: rgba(29, 182, 148, .7);
+  border-radius: 7px;
+  border: 2px solid #004C3B;
+  position: relative;
+  }
+
+  .main {
+  width: 380px;
+  min-height: 80px;
+  background: #EDECDE;
+  opacity: 1;
+  border-radius: 5px;
+  border: 1px solid #666;
+  position: absolute;
+  top: 8px; right: 8px; bottom: 8px; left: 8px;
+  }
+  
+  .head {
+  width: calc(100%-10px);
+  background: linear-gradient(to top, #FFBA00, #FFD800);
+  background: -webkit-linear-gradient(bottom, #FFBA00, #FFD800);
+  border-radius: 5px 5px 0px 0px;
+  padding-left: 10px;
+  font: 16px/30px Arial, sans-serif;
+  margin-top: 0;  
+  }
+
+  .head:before {
+  content: " ";
+  margin-top: 30px;
+  border: 8px solid; 
+	border-color: #FFBA00 transparent transparent transparent; 
+  position: absolute;
+  } 
+
+  .text {
+  font: 12px Arial, sans-serif;
+  background: #EDECDE;
+  padding-left: 10px;
+  
+  
+  }
+
+ 
+ 
+  </style>
+ </head>
+ <body>
+
+  <div class="outer">
+    <div class="main">
+      <h1 class="head">
+      Заголовок
+      </h1>
+      <div class="text">
+      Содержимое
+      </div>
+    </div>
+  </div>  
+
+  
+ </body>
+</html>

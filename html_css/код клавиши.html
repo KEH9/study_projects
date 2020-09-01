@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>форма цифры</title>
+  <style>
+  
+  p {float: left;}
+
+  </style>
+ </head>
+ 
+ <body>
+     <p>Введите число от 1 до 10:</p> 
+     <p><input type="text" id="field" style="width:33px"> </p>
+
+<script type="text/javascript">
+	field.addEventListener("keydown", event => {
+  		alert(event.keyCode);
+	});
+
+</script>    
+
+ </body>
+</html>

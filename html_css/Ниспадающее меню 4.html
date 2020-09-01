@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Ниспадающее меню</title>
+  <style>
+
+/* Корневой лист */
+ul.dropdown-menu {
+  display: inline-block;
+}
+
+/* Вложенные листы */
+ul.dropdown-menu,
+ul.dropdown-menu ul {
+  padding: 5px;
+  list-style-type: none;
+}
+
+ul.dropdown-menu ul {
+  position: absolute;
+  /* Заголовок выше вложенного листа */
+  z-index:1;
+  
+  /* По умолчанию все вложенные листы скрыты  */
+  display:none; 
+  
+  /* Вложенный лист всегда чуть шире титула */
+  min-width: 130px;
+  width: calc(100% + 20px); 
+  
+  background-color: white;
+  box-shadow: 0 0 5px 1px black;    /*нижняя коробка*/
+}
+
+ul.dropdown-menu li:hover > ul {
+  display: block;
+}
+
+/* Элементы вложенных листов */
+ul.dropdown-menu li {
+  padding: 2px 5px;
+  color: #352FCD;
+}
+
+ul.dropdown-menu li li:hover {
+  background-color: #37ABFF;
+  color: white;
+  cursor: pointer;
+}
+
+ul.dropdown-menu li li + li {
+  /* Отступы между элементами вложенных листов */
+  margin-top: 5px;
+}
+
+/* Элементы корневого листа (Заголовки - Файл, Правка) */
+ul.dropdown-menu > li {
+  display: inline-block;
+  position: relative;
+}
+
+ul.dropdown-menu > li:hover span {
+  text-decoration: none;
+  color: black;
+ background-color: white;
+  
+  /* 1. Небольшая тень-заплатка
+        на место сочленения заголовка и листа
+     2. Основная тень заголовка */
+  box-shadow: 0 5px 0 0 white, 0 0 3px 1px black;           
+}        
+
+ul.dropdown-menu > li span {
+  display: inline-block;                
+  border-radius: 5px 5px 0 0;  
+  padding: 5px;
+  background-color: transparent;            
+  text-decoration: underline;    
+  color: #352FCD;
+  position: relative;
+  max-width: 300px;
+                         
+  /* Заголовок выше вложенного листа */
+  z-index:2; 
+}
+
+ul.dropdown-menu > li + li {
+  /* Отступы между элементами корневого листа */
+  margin-left: 20px;
+}
+
+
+    
+  </style>
+ </head>
+ <body>
+ 
+	<ul class="dropdown-menu">
+  <li>
+    <span>Файл</span>
+    <ul>
+      <li>Новый</li>
+      <li>Открыть</li>
+      <li>Сохранить</li>
+      <li>Закрыть</li>
+    </ul>
+  </li>
+  <li>
+    <span>Правка</span>
+    <ul>
+      <li>Вырезать</li>
+      <li>Копировать</li>
+      <li>Вставить</li>
+      <li>Удалить</li>
+    </ul>    
+  </li>
+</ul>  
+                   
+ </body>
+</html>

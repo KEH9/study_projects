@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Батарейка</title>
+  <style>
+
+  div {
+  border: 3px solid black;
+  width: 150px;
+  height: 40px;
+  margin-top: 10px;
+  position: relative;
+  }
+
+  div::after {
+  content: "";
+  width: 10px;
+  height: 20px;
+  background: #000;
+  right: -10px; top: 10px;
+  position: absolute;
+  }
+
+  span {
+  display: block;
+  }
+
+  .red {
+  background: red;
+  height: 40px;
+  width: 50px;
+  }
+  .yellow {
+  background: yellow;
+  height: 40px;
+  width: 100px;
+  }
+  .green {
+  background: green;
+  height: 40px;
+  width: 150px;
+  }
+
+
+  </style>
+ </head>
+ <body>
+  <div>
+  <span class="red"></span>
+  </div> 
+  <div>
+  <span class="yellow"></span> 
+  </div>
+  <div>
+  <span class="green"></span> 
+  </div>
+ 
+ 
+ </body>
+</html>
