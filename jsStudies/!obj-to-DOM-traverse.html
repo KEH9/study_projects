@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+
+  <ol id="container"></ol>
+
+
+
+  <script>
+
+
+    let data = {
+      "Рыбы": {
+        "форель": {},
+        "лосось": {}
+      },
+
+      "Деревья": {
+        "Огромные": {
+          "секвойя": {},
+          "дуб": {}
+        },
+        "Цветковые": {
+          "яблоня": {},
+          "магнолия": {}
+        }
+      }
+    };
+
+    let container = document.getElementById('container');
+    createTree(container, data); // создаёт дерево в контейнере
+
+    function createTree(container, data, nextLevel=true, pos=0, parentPos) { 
+
+      let keys =  Object.keys(data);
+
+
+      if ( nextLevel ) {
+        let ul = document.createElement("ul");
+        if ( container.children[parentPos] ) {
+          container.children[parentPos].append(ul);
+        } else {
+          container.append(ul);
+        }
+        let li = document.createElement("li");
+        li.textContent = keys[pos];
+        ul.append(li);
+        container = ul;
+      } else {
+        li = document.createElement("li");
+        li.textContent = keys[pos];
+        container.append(li);
+      }
+
+
+      if ( data[keys[pos]] != undefined && Object.keys(data[keys[pos]]).length > 0 ) {
+        createTree(container, data[keys[pos]], true, 0, pos)
+      }
+
+      if ( keys.length > (pos + 1) ) {
+        createTree(container, data, false, (pos + 1), pos)
+      }
+
+     }
+  
+
+
+
+  </script>
+  
+
+
+
+</body>
+
+</html>
