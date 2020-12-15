@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+  <style>
+    span {
+      cursor: pointer;
+    }
+
+  </style>
+
+
+</head>
+<body>
+
+  <ul class="tree" id="tree">
+    <li>Животные
+      <ul>
+        <li>Млекопитающие
+          <ul>
+            <li>Коровы</li>
+            <li>Ослы</li>
+            <li>Собаки</li>
+            <li>Тигры</li>
+          </ul>
+        </li>
+        <li>Другие
+          <ul>
+            <li>Змеи</li>
+            <li>Птицы</li>
+            <li>Ящерицы</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Рыбы
+      <ul>
+        <li>Аквариумные
+          <ul>
+            <li>Гуппи</li>
+            <li>Скалярии</li>
+          </ul>
+        </li>
+        <li>Морские
+          <ul>
+            <li>Морская форель</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+
+
+  <script>
+
+    let tree = document.getElementById("tree");
+
+    for ( let li of tree.querySelectorAll("li") ) {
+      let span = document.createElement("span");
+      li.prepend(span);
+      span.append(span.nextSibling);
+    }
+
+    tree.addEventListener('click', function (event) {
+      let span = event.target;
+      console.log(span.tagName);
+      if ( span.tagName != 'SPAN' ) return;
+      Array.prototype.slice.call(span.closest("li").querySelectorAll("li")).map((liIn) => liIn.hidden = !liIn.hidden);
+    });
+
+
+
+  </script>
+  
+  
+
+  
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+  <style>
+
+    .arrow {
+      position: absolute;
+      top: 47px;
+      left: 8px;
+      padding: 0;
+      background: #ddd;
+      border-radius: 15px;
+      border: 1px solid gray;
+      font-size: 24px;
+      line-height: 24px;
+      color: #444;
+      display: inline;
+    }
+
+    .arrow.right {
+      left: 440px;
+    }
+
+    .arrow:focus {
+      outline: none;
+    }
+
+    .arrow:hover {
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    ul {
+      position: relative;
+      left: 0px;
+      height: 130px;
+      width: 9999px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0;
+      transition: all 1s;
+    }
+
+    ul img {
+      width: 130px;
+      height: 130px;
+      display: block; /* убираем пустое место вокруг картинок */
+    }
+
+    ul li {
+      display: inline-block; /* убираем пустое место между элементами списка */
+    }
+
+    #outer-container {
+      position: relative;
+      width: 470px;
+      background-color: lightgray;
+      border-radius: 15px;
+      border: 1px solid gray;
+
+    }
+
+    #inner-container {
+      margin-left: 39px;
+      width: 390px;
+      overflow: hidden;
+    }
+
+
+  </style>
+
+
+</head>
+<body>
+
+  <!-- создайте свою разметку со стилями -->
+
+  
+  <div id="outer-container">
+    <button class="arrow">⇦</button>
+    <button class="arrow right">⇨</button>
+    <div id="inner-container">
+      <ul id="imgs">
+        <li><img src="https://ru.js.cx/carousel/1.png"></li>
+        <li><img src="https://ru.js.cx/carousel/2.png"></li>
+        <li><img src="https://ru.js.cx/carousel/3.png"></li>
+        <li><img src="https://ru.js.cx/carousel/4.png"></li>
+        <li><img src="https://ru.js.cx/carousel/5.png"></li>
+        <li><img src="https://ru.js.cx/carousel/6.png"></li>
+        <li><img src="https://ru.js.cx/carousel/7.png"></li>
+        <li><img src="https://ru.js.cx/carousel/8.png"></li>
+        <li><img src="https://ru.js.cx/carousel/9.png"></li>
+        <li><img src="https://ru.js.cx/carousel/10.png"></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <script>
+
+// NOT THE BES VERSION!!!!! 
+
+// Better to keep shift in variable!!!
+
+    let arrowLeft = document.querySelectorAll(".arrow")[0];
+    let arrowRight = document.querySelectorAll(".arrow")[1];
+    let imgs = document.getElementById("imgs");
+    let picsAmount = imgs.querySelectorAll("li").length;
+    let picWidth = imgs.querySelectorAll("li")[0].clientWidth;
+    let limit = picsAmount * picWidth  - (picWidth * 3);
+
+    arrowLeft.addEventListener('click', function() {
+
+    });
+
+    arrowRight.addEventListener('click', function() {
+      let pos = imgs.style.left;
+      if ( pos.length == '' ) {
+        imgs.style.left = -(picWidth * 3) + "px";
+      } else {
+        let posNum = +(pos.slice(0, -2));
+        let newLeft = posNum - (picWidth * 3);
+        if ( newLeft < -limit ) newLeft = -limit;
+        imgs.style.left = newLeft + "px";
+      }
+    });
+
+    arrowLeft.addEventListener('click', function() {
+      let pos = imgs.style.left;
+      if ( !(pos.length == '') ) {
+        let posNum = +(pos.slice(0, -2));
+        let newLeft = posNum + (picWidth * 3);
+        newLeft = Math.min(newLeft, 0);
+        imgs.style.left = newLeft + "px";
+      }
+    });
+
+
+
+  </script>
+  
+  
+
+  
+</body>
+
+</html>

@@ -4,70 +4,26 @@
 <head>
     <meta charset="utf-8">
 
+
     <style>
+
+
+
+
     </style>
+  
 
 </head>
-
 <body>
 
 
-  <ol id="container"></ol>
-
-
-
-
-
-  <script>
-
-
-    let data = {
-      "Рыбы": {
-        "форель": {},
-        "лосось": {}
-      },
-
-      "Деревья": {
-        "Огромные": {
-          "секвойя": {},
-          "дуб": {}
-        },
-        "Цветковые": {
-          "яблоня": {},
-          "магнолия": {}
-        }
-      }
-    };
-
-    let container = document.getElementById('container');
-    createTree(container, data); // создаёт дерево в контейнере
-
-    function createTree(container, data) { 
-
-      container.append(createTreeDOM(data));
-
-    }
   
+  <script>
+  
+  let url = new URL('https://javascript.info/profile/');
+  let newUrl = new URL('tester', url);
 
-    function createTreeDOM(obj) {
-
-      let ul = document.createElement("ul");
-
-      for ( let key in obj ) {
-        let li = document.createElement("li");
-        li.textContent = key;
-
-        if ( Object.keys(obj[key]).length != 0 ) {
-          let childUl = createTreeDOM(obj[key]);
-          li.append(childUl);
-        }
-
-        ul.append(li);
-      }
-      return ul;
-
-    }
-
+  console.log(newUrl); // https://javascript.info/profile/tester
 
 
 
@@ -75,9 +31,9 @@
 
   </script>
   
+  
 
-
-
+  
 </body>
 
 </html>

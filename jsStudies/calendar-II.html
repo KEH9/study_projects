@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th {
+        background-color: lightgray;
+      }
+
+      th, td {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="elem"></div>
+
+  <script>
+
+    let elem = document.getElementById('elem');
+
+    createCalendar(elem, 2012, 10);
+
+
+    function createCalendar(elem, year, month) {
+
+      let table = document.createElement("table");
+      let tbody = document.createElement("tbody");
+      createTableHead(tbody);
+      let amountOfDaysInMonth = new Date(year, month, 0).getDate();
+      let lastDayAdded = 0;
+
+      addFirstWeek();
+
+      do {
+
+        let newWeek = document.createElement("tr");
+        if ( (lastDayAdded + 7) <= amountOfDaysInMonth ) {
+          addDays(newWeek, (lastDayAdded + 1), 7);
+          tbody.append(newWeek);
+        } else {
+          let daysOfLastWeek = amountOfDaysInMonth - lastDayAdded;
+          addDays(newWeek, (lastDayAdded + 1), daysOfLastWeek);
+          addEmptyDays(newWeek, (7 - daysOfLastWeek));
+          tbody.append(newWeek);
+        }
+
+      } while ( lastDayAdded < amountOfDaysInMonth )
+
+      table.append(tbody);
+      elem.append(table);
+
+
+    function addDays(week, firstDayToAdd, amount) {
+      for ( i = 0 ; i < amount ; i++ ) {
+        let td = document.createElement("td");
+        td.textContent = (firstDayToAdd + i);
+        week.append(td);
+      }
+      lastDayAdded += amount;
+    }
+
+
+    function getDayOfTheWeek(date) {
+      result = date.getDay();
+      if ( result == 0 ) result = 7;
+      return result
+    }
+
+
+    function addEmptyDays(week, days) {
+      for ( i = 0 ; i < days ; i++ ) {
+        week.append(document.createElement("td"));
+      }
+    }
+
+
+    function addFirstWeek() {
+      let firstWeek = document.createElement("tr");
+      let firstDayOfMonth = new Date(year, month - 1, 1);
+      let firstDayDayOfWeek = getDayOfTheWeek(firstDayOfMonth);
+      
+      if ( firstDayDayOfWeek != 1 ) {
+        addEmptyDays( firstWeek, (firstDayDayOfWeek - 1) )
+      }
+      addDays(firstWeek, 1, (8 - firstDayDayOfWeek));
+        
+      tbody.append(firstWeek);
+
+    }
+
+
+    function createTableHead(tbody) {
+      let weekDayNames = document.createElement("tr");
+      let weekDayNamesArray = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
+      for ( let i = 0 ; i < weekDayNamesArray.length ; i++ ) {
+        let dayName = document.createElement("th");
+        dayName.textContent = weekDayNamesArray[i];
+        weekDayNames.append(dayName);
+      }      
+      tbody.append(weekDayNames);
+    }
+  }
+  </script>
+  
+  
+
+  
+</body>
+
+</html>
